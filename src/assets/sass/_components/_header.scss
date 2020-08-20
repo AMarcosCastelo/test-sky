@@ -48,16 +48,13 @@ header {
       @include header-btn();
     }
 
-    .header-right-group {
-      display: flex;
-      .btn-header-signIn {
-        padding: 0 20px;
-        @include header-btn();
-      }
+    .btn-header-signIn {
+      padding: 0 20px;
+      @include header-btn();
+    }
 
-      .btn-header-search {
-        @include header-btn();
-      }
+    .btn-header-search {
+      @include header-btn();
     }
 
     .btn-header-menu {
