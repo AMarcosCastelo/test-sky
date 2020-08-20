@@ -1,5 +1,7 @@
 window.home = {
   init() {
-    // const teste = '';
+    const teste = '';
+
+    return teste;
   }
 };

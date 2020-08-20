@@ -1,0 +1,60 @@
+@mixin header-button() {
+  cursor: pointer;
+  span {
+    display: block;
+    position: relative;
+    font-size: 1rem;
+    font-weight: 500;
+
+    &:before {
+      content: attr(data-icon);
+      font-family: 'SKY-Icon';
+      font-size: 1.4rem;
+      margin-right: 6px;
+      vertical-align: -2px;
+      font-weight: normal;
+    }
+  }
+}
+
+header {
+  .header-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+
+    .header-logo {
+      width: 90px;
+      height: 40px;
+
+      a {
+        display: block;
+        height: 100%;
+        text-indent: -2000px;
+        background: url($main-logo) no-repeat center;
+      }
+    }
+
+    .header-accessibilities {
+      padding: 0 40px;
+
+      button {
+        width: 30px;
+        height: 30px;
+        border: none;
+        border-radius: 50%;
+        background-color: #fafaff;
+        margin: 0 8px;
+        cursor: pointer;
+
+        &:before {
+          content: attr(data-icon);
+          display: block;
+          font-family: 'SKY-Icon';
+          color: $text-color;
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}

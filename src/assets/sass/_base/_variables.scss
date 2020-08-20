@@ -1,0 +1,22 @@
+$fonts-path: '../../src/assets/fonts';
+
+$main-color: #f35c58;
+$light-gray: #f1f2fa;
+
+$bg-color: #fafaff;
+$text-color: #606064;
+$bg-header: $light-gray;
+$bg-footer: $light-gray;
+
+//Theme dark colors
+$dark-bg-color: #1b2021;
+$dark-text-color: #fff;
+$dark-bg-header: #32383a;
+$dark-bg-nav: #32383a;
+$dark-bg-footer: #32383a;
+$dark-bg-footer-bottom: #1b2021;
+
+//Images
+
+$imgs-path: '../../src/assets/images';
+$main-logo: $imgs-path + '/logo-sky.svg';

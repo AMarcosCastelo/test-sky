@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:watch": "gulp watch",
     "deploy:dev": "gulp",
     "deploy": "gh-pages -d build",
     "lint": "eslint src/assets/js"
