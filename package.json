@@ -1,0 +1,41 @@
+{
+  "name": "test-sky",
+  "version": "1.0.0",
+  "description": "Page created for the Sky test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:dev": "gulp",
+    "deploy": "gh-pages -d build",
+    "lint": "eslint src/assets/js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AMarcosCastelo/test-sky.git"
+  },
+  "keywords": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "SASS",
+    "Gulp",
+    "JQuery"
+  ],
+  "author": "Antonio Marcos Castelo <marcos-12marcos@hotmail.com> (https://github.com/AMarcosCastelo)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AMarcosCastelo/test-sky/issues"
+  },
+  "homepage": "https://github.com/AMarcosCastelo/test-sky#readme",
+  "devDependencies": {
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "gh-pages": "^3.1.0",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify-es": "^2.0.0"
+  }
+}
