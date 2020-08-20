@@ -1,27 +1,11 @@
-@mixin header-button() {
-  cursor: pointer;
-  span {
-    display: block;
-    position: relative;
-    font-size: 1rem;
-    font-weight: 500;
-
-    &:before {
-      content: attr(data-icon);
-      font-family: 'SKY-Icon';
-      font-size: 1.4rem;
-      margin-right: 6px;
-      vertical-align: -2px;
-      font-weight: normal;
-    }
-  }
-}
-
 header {
+  background: $background-header;
+  border-bottom: 1px solid $border-header;
+
   .header-wrapper {
+    padding: 12px 0;
     display: flex;
     align-items: center;
-    padding: 10px 0;
 
     .header-logo {
       width: 90px;
@@ -49,11 +33,66 @@ header {
 
         &:before {
           content: attr(data-icon);
-          display: block;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           font-family: 'SKY-Icon';
           color: $text-color;
           font-size: 1.4rem;
         }
+      }
+    }
+
+    .btn-header-play {
+      flex: 1;
+      @include header-btn();
+    }
+
+    .header-right-group {
+      display: flex;
+      .btn-header-signIn {
+        padding: 0 20px;
+        @include header-btn();
+      }
+
+      .btn-header-search {
+        @include header-btn();
+      }
+    }
+
+    .btn-header-menu {
+      @include header-btn();
+    }
+
+    .btn-header-menu {
+      display: none;
+      span {
+        width: 22px;
+        height: 3px;
+        background: $text-color;
+        display: block;
+
+        & + span {
+          margin-top: 4px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .header-wrapper {
+      justify-content: space-between;
+      padding: 10px 15px;
+
+      .header-accessibilities,
+      .btn-header-play,
+      .btn-header-signIn,
+      .btn-header-search {
+        display: none;
+      }
+
+      .btn-header-menu {
+        display: block;
       }
     }
   }
