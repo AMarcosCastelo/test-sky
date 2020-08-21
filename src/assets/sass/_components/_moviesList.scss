@@ -41,7 +41,7 @@
       transform: rotate(90deg);
     }
     .slick-list {
-      padding: 0 10% 0 15px;
+      padding: 10px 10% 10px 15px;
 
       .slick-track {
         display: flex !important;
@@ -52,6 +52,11 @@
       display: flex;
       justify-content: center;
       outline: none;
+      transition: all 0.5s;
+
+      &:hover {
+        transform: scale(1.06);
+      }
 
       & + .item {
         margin-left: 15px;
@@ -168,7 +173,7 @@
 
     .movies-carousel {
       .slick-list {
-        padding: 0 0 0 5%;
+        padding: 10px 10px 10px 5%;
 
         .slick-track {
           .slick-slide {

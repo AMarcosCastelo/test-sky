@@ -63,7 +63,7 @@ window.home = {
       })
       .join('');
 
-    $('.slider').html(html).removeClass('on-loading');
+    $('#sliderHighlights').html(html).removeClass('on-loading');
     this.initHighlightsSlider();
   },
 
@@ -72,7 +72,7 @@ window.home = {
       return `
         <div class="movies-list-carousel">
           <h2 class="movies-header-title">${carousel.title}</h2>
-          <div class="movies-carousel">
+          <div class="movies-carousel" id="moviesCarousel">
             ${carousel.movies
               .map((movie) => {
                 return `
@@ -90,12 +90,12 @@ window.home = {
         </div> `;
     });
 
-    $('.wrapper-carousel').html(html);
+    $('#wrapperCarousel').html(html);
     this.initMoviesCarousels();
   },
 
   initHighlightsSlider() {
-    $('.slider').slick({
+    $('#sliderHighlights').slick({
       centerMode: true,
       centerPadding: '25%',
       dots: true,
@@ -116,7 +116,7 @@ window.home = {
   },
 
   initMoviesCarousels() {
-    $('.movies-carousel').slick({
+    $('#moviesCarousel').slick({
       initialSlide: 0,
       slidesToShow: 7,
       slidesToScroll: 7,
