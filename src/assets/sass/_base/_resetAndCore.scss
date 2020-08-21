@@ -171,3 +171,53 @@ table {
     width: 1170px;
   }
 }
+
+// Theme
+
+body.dark {
+  color: $dark-text-color;
+  background-color: $dark-background-color;
+
+  header {
+    background-color: $dark-background-header;
+
+    border-bottom: 1px solid rgba(238, 238, 238, 0.15);
+  }
+
+  nav {
+    background-color: $dark-background-nav;
+
+    box-shadow: none;
+  }
+
+  footer {
+    background-color: $dark-background-footer;
+
+    border-top: 1px solid rgba(238, 238, 238, 0.15);
+
+    .footer-top {
+      border-bottom: 1px solid rgba(238, 238, 238, 0.15);
+
+      .box-footerTop .logo-footer {
+        // background: url($logo-footer-dark) no-repeat left;
+      }
+    }
+
+    .footer-middle .box-footerBottom .box-app a.link-app {
+      &.app-store {
+        // background-image: url($img-appStore-dark);
+      }
+      &.google-play {
+        // background-image: url($img-googleplay-dark);
+      }
+    }
+
+    .footer-bottom {
+      background-color: $dark-background-footer-bottom;
+
+      a {
+        color: #fff !important;
+      }
+    }
+  }
+}

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./dist/css/style.css" type="text/css" />
     <title>Assista Filmes e Séries em Qualquer lugar | SKY Play</title>
   </head>
-  <body>
+  <body class="light">
     <!-- Header start -->
     <header>
       <div class="header-wrapper container-fluid">
@@ -33,6 +33,7 @@
           <button
             type="button"
             class="theme-color"
+            id="btnSetTheme"
             title="Alterar modo Escuro/Claro"
             data-icon="&#xe91f;"
           ></button>
@@ -328,8 +329,29 @@
     <script src="./src/assets/libs/slick-1.8.1/slick/slick.min.js"></script>
     <script src="./dist/js/main.js"></script>
     <script>
+      (function () {
+        window.__onThemeChange = function () {};
+        function setTheme(newTheme) {
+          window.__theme = newTheme;
+          preferredTheme = newTheme;
+          document.body.className = newTheme;
+          window.__onThemeChange(newTheme);
+        }
+        var preferredTheme;
+        try {
+          preferredTheme = localStorage.getItem('theme');
+        } catch (err) {}
+        window.__setPreferredTheme = function (newTheme) {
+          setTheme(newTheme);
+          try {
+            localStorage.setItem('theme', newTheme);
+          } catch (err) {}
+        };
+        setTheme(preferredTheme || 'dark');
+      })();
+
       $(function () {
-        home.init();
+        home.init({ theme: window.__theme });
       });
     </script>
   </body>

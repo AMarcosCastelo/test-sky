@@ -1,8 +1,9 @@
 window.home = {
   highlightMovies: [],
   carouselsMovies: [],
-
-  init() {
+  theme: '',
+  init({ theme }) {
+    this.setTheme(theme);
     this.initialState();
   },
 
@@ -13,6 +14,18 @@ window.home = {
 
   initDOMEvents() {
     this.toggleNavActive('.nav-item');
+    this.eventSetThemeMode();
+  },
+
+  setTheme(theme) {
+    this.theme = theme;
+  },
+
+  eventSetThemeMode() {
+    $('#btnSetTheme').click(() => {
+      this.setTheme(this.theme === 'light' ? 'dark' : 'light');
+      window.__setPreferredTheme(this.theme);
+    });
   },
 
   toggleNavActive(elementSelector) {
