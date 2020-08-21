@@ -16,3 +16,28 @@
     }
   }
 }
+
+@mixin loading-shimmer() {
+  background: linear-gradient(#e7edf1 0%, #f8f8f8 50%, #e7edf1 100%) !important;
+  border: none !important;
+  -webkit-animation: pulse 0.65s infinite alternate;
+  animation: pulse 0.65s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

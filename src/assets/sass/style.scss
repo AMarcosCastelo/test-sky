@@ -1,5 +1,8 @@
 @import './_base/variables';
 @import './_base/resetAndCore';
 @import './_base/mixins';
+
+// Components
 @import './_components/header';
 @import './_components/nav';
+@import './_components/mainSlider';

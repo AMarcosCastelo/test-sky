@@ -1,4 +1,7 @@
 nav {
+  box-shadow: 0 2px 7px -2px $color-shadow;
+  background: $bg-color;
+
   ul {
     display: flex;
 
