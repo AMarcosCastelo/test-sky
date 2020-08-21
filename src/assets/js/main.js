@@ -46,6 +46,7 @@ window.home = {
       (item) => item.type === 'carousel-portrait'
     );
     this.makeHighlightsSlider();
+    this.makeMoviesCarousels();
   },
 
   makeHighlightsSlider() {
@@ -66,6 +67,33 @@ window.home = {
     this.initHighlightsSlider();
   },
 
+  makeMoviesCarousels() {
+    const html = this.carouselsMovies.map((carousel) => {
+      return `
+        <div class="movies-list-carousel">
+          <h2 class="movies-header-title">${carousel.title}</h2>
+          <div class="movies-carousel">
+            ${carousel.movies
+              .map((movie) => {
+                return `
+              <div class="item ${movie.isBlocked ? 'blocked' : ''}">
+                <div class="movie-img">
+                  <a href="#">
+                    <img src="${movie.images[0].url}" alt="${movie.title}" />
+                  </a>
+                </div>
+              </div>
+            `;
+              })
+              .join('')}
+          </div>
+        </div> `;
+    });
+
+    $('.wrapper-carousel').html(html);
+    this.initMoviesCarousels();
+  },
+
   initHighlightsSlider() {
     $('.slider').slick({
       centerMode: true,
@@ -81,6 +109,42 @@ window.home = {
             dots: false,
             centerMode: false,
             centerPadding: 0
+          }
+        }
+      ]
+    });
+  },
+
+  initMoviesCarousels() {
+    $('.movies-carousel').slick({
+      initialSlide: 0,
+      infinite: false,
+      slidesToShow: 7,
+      slidesToScroll: 7,
+      responsive: [
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 5,
+            slidesToScroll: 5
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: false,
+            centerMode: false,
+            slidesToShow: 4,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 599,
+          settings: {
+            arrows: false,
+            centerMode: false,
+            slidesToShow: 2,
+            slidesToScroll: 1
           }
         }
       ]

@@ -1,0 +1,275 @@
+footer {
+  border-top: 1px solid $border-footer;
+  background: $bg-footer;
+
+  .footer-header {
+    border-bottom: 1px solid $border-footer;
+    padding: 12px 0;
+
+    .wrapper-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .footer-logo {
+        width: 90px;
+        height: 40px;
+        background: url($images-path + '/logo-sky-gray.svg') no-repeat left;
+      }
+
+      .footer-social-media {
+        ul {
+          list-style: none;
+          display: flex;
+
+          li {
+            margin: 0 10px;
+
+            a {
+              display: block;
+              color: inherit;
+              text-decoration: none;
+
+              &::before {
+                content: attr(data-icon);
+                font-family: 'SKY-Icon';
+                font-size: 1.8rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-middle {
+    padding-top: 25px;
+
+    .wrapper-footer-middle {
+      display: flex;
+      flex-wrap: wrap;
+
+      & > div {
+        flex-basis: 100%;
+      }
+
+      .container-app {
+        padding-left: 60px;
+        margin-bottom: 30px;
+
+        .btns-app-stores {
+          display: flex;
+        }
+
+        a.text-app {
+          position: relative;
+          text-decoration: none;
+          color: inherit;
+          font-size: 1.14rem;
+          font-weight: 600;
+
+          &:before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url($images-path + '/app-icon.png') no-repeat center;
+            right: 100%;
+            margin-right: 15px;
+          }
+        }
+
+        a.btn-link-app {
+          display: none;
+          width: 170px;
+          height: 55px;
+          margin-top: 20px;
+          text-decoration: none;
+
+          &:nth-child(1) {
+            margin-right: 20px;
+          }
+
+          &.btn-app-store {
+            background: url($images-path + '/button-apple-store.svg') no-repeat
+              left;
+            background-size: contain;
+            &:hover {
+              background-image: url($images-path + '/button-apple-store-over.svg');
+            }
+          }
+
+          &.btn-google-play {
+            background: url($images-path + '/button-google-play.svg') no-repeat
+              left;
+            background-size: contain;
+            &:hover {
+              background-image: url($images-path + '/button-google-play-over.svg');
+            }
+          }
+        }
+      }
+
+      .container-navigation {
+        .nav {
+          overflow: hidden;
+
+          & + .nav {
+            border-top: 1px solid #d9d9e0;
+          }
+
+          .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: inherit;
+            text-decoration: none;
+            padding: 14px 0;
+            font-weight: bold;
+            cursor: pointer;
+            -webkit-transition: color 0.2s;
+            -o-transition: color 0.2s;
+            transition: color 0.2s;
+
+            &:hover {
+              color: $main-color;
+            }
+
+            &:not(.no-children) {
+              &::after {
+                content: '\e91a';
+                font-family: 'SKY-Icon';
+                width: 20px;
+                height: 20px;
+                font-size: 20px;
+                text-align: center;
+                transition: all 0.35s;
+              }
+            }
+          }
+
+          .nav-content {
+            max-height: 0;
+            transition: all 0.35s;
+
+            .nav-item {
+              display: block;
+              color: inherit;
+              text-decoration: none;
+              padding: 5px 0;
+
+              &:last-child {
+                padding-bottom: 25px;
+              }
+            }
+          }
+
+          input {
+            position: absolute;
+            opacity: 0;
+
+            &:checked {
+              & + .nav-header {
+                &::after {
+                  transform: rotate(-90deg);
+                }
+              }
+              & ~ .nav-content {
+                max-height: 100vh;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    padding: 15px 0;
+    background-color: #fff;
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        padding: 5px 0;
+        margin-right: 10px;
+
+        &:not(:last-child) {
+          &::after {
+            content: '|';
+          }
+        }
+
+        a {
+          font-size: 1.07rem;
+          color: #90979b;
+          text-decoration: none;
+          font-weight: 500;
+          padding: 5px 10px 5px 0;
+          transition: color 0.5s;
+
+          &:hover {
+            color: $main-color;
+          }
+        }
+      }
+    }
+  }
+
+  .copyright {
+    padding: 15px 0;
+  }
+
+  @media (min-width: 768px) {
+    .footer-middle {
+      padding-bottom: 25px;
+
+      .wrapper-footer-middle {
+        & > div {
+          flex-basis: 50%;
+        }
+
+        .container-app {
+          a.btn-link-app.btn-app-store,
+          a.btn-link-app.btn-google-play {
+            display: block;
+          }
+        }
+
+        .container-navigation {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+
+          .nav {
+            -webkit-box-flex: 50%;
+            -ms-flex: 50%;
+            flex: 50%;
+
+            & + .nav {
+              border: none;
+            }
+
+            .nav-header {
+              pointer-events: none;
+              padding-top: 0;
+
+              &:not(.no-children)::after {
+                content: '';
+              }
+            }
+
+            .nav-content {
+              max-height: 100vh;
+            }
+          }
+        }
+      }
+    }
+  }
+}

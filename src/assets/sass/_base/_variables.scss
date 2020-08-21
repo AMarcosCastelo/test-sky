@@ -8,6 +8,7 @@ $text-color: #606064;
 $background-header: $light-gray;
 $bg-footer: $light-gray;
 $border-header: #d3d3d8;
+$border-footer: #d3d3d8;
 $color-shadow: #b1afaf;
 
 //Theme dark colors
@@ -18,6 +19,5 @@ $dark-bg-nav: #32383a;
 $dark-bg-footer: #32383a;
 $dark-bg-footer-bottom: #1b2021;
 
-//Images
+//Image path
 $images-path: '../../src/assets/images';
-$main-logo: $images-path + '/logo-sky.svg';

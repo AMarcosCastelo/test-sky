@@ -1,0 +1,181 @@
+.movies-list-carousel {
+  padding: 30px 0;
+
+  &.on-loading {
+    .movies-header-title {
+      width: 200px;
+      border-radius: 8px;
+      color: transparent;
+      @include loading-shimmer();
+    }
+
+    .movies-carousel {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      padding-left: 15px;
+
+      .item {
+        min-width: 25%;
+        padding-top: 35%;
+        margin-right: 15px;
+        border-radius: 5px;
+        @include loading-shimmer();
+      }
+    }
+  }
+
+  .movies-header-title {
+    font-size: 1.42rem;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    font-weight: bold;
+  }
+
+  .movies-carousel > .slick-list > .slick-track {
+    margin-left: 0;
+  }
+
+  .movies-carousel {
+    &.reset-animation {
+      transform: rotate(90deg);
+    }
+    .slick-list {
+      padding: 0 10% 0 15px;
+
+      .slick-track {
+        display: flex !important;
+      }
+    }
+
+    .item {
+      display: flex;
+      justify-content: center;
+      outline: none;
+
+      & + .item {
+        margin-left: 15px;
+      }
+
+      &.blocked {
+        .movie-img::before {
+          content: '\e94A';
+        }
+      }
+
+      .movie-img {
+        width: 100%;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0px 2px 9px 0px rgba(158, 184, 209, 0.41);
+        position: relative;
+
+        &::before {
+          content: '\e95E';
+          font-family: 'SKY-Icon';
+          width: 20px;
+          height: 20px;
+          position: absolute;
+          top: 3px;
+          right: 3px;
+          background: rgba(0, 0, 0, 0.6);
+          color: #fff;
+          font-size: 18px;
+          text-align: center;
+          border: 2px solid #fff;
+          border-radius: 50%;
+          padding: 3px;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .slick-prev,
+    .slick-next {
+      width: 45px;
+      height: 80px;
+      position: absolute;
+      z-index: 2;
+      color: transparent;
+      background-color: rgba(0, 0, 0, 0.8);
+      outline: none;
+      border: none;
+      top: 50%;
+      transform: translateY(-50%);
+      -webkit-transition: opacity 0.3s;
+      -o-transition: opacity 0.3s;
+      transition: opacity 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 1);
+      }
+
+      &.slick-disabled {
+        opacity: 0;
+      }
+
+      &:before {
+        font-family: 'SKY-Icon';
+        font-size: 25px;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .slick-prev {
+      left: 0;
+      border-top-right-radius: 100px;
+      border-bottom-right-radius: 100px;
+
+      &:before {
+        content: '\e918';
+      }
+    }
+
+    .slick-next {
+      right: 0;
+      border-top-left-radius: 100px;
+      border-bottom-left-radius: 100px;
+
+      &:before {
+        content: '\e91A';
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    &.on-loading {
+      .movies-carousel {
+        padding-left: 5%;
+
+        .item {
+          min-width: 18%;
+          padding-top: 25%;
+        }
+      }
+    }
+    .movies-header-title {
+      margin-left: 5%;
+    }
+
+    .movies-carousel {
+      .slick-list {
+        padding: 0 0 0 5%;
+
+        .slick-track {
+          .slick-slide {
+            height: inherit !important;
+          }
+        }
+      }
+    }
+  }
+}
