@@ -14,6 +14,7 @@ header {
       a {
         display: block;
         height: 100%;
+
         text-indent: -2000px;
         background: url($images-path + '/logo-sky.svg') no-repeat center;
       }
@@ -23,22 +24,33 @@ header {
       padding: 0 40px;
 
       button {
+        cursor: pointer;
         width: 30px;
         height: 30px;
+
         border: none;
         border-radius: 50%;
         background-color: #fafaff;
         margin: 0 8px;
-        cursor: pointer;
+        transition: all 0.5s;
 
         &:before {
-          content: attr(data-icon);
           display: flex;
           justify-content: center;
           align-items: center;
+
           font-family: 'SKY-Icon';
-          color: $text-color;
           font-size: 1.4rem;
+          color: $text-color;
+
+          content: attr(data-icon);
+        }
+
+        &:hover {
+          background-color: $text-color;
+          &:before {
+            color: $main-color;
+          }
         }
       }
     }
@@ -64,10 +76,12 @@ header {
     .btn-header-menu {
       display: none;
       span {
+        display: block;
+
         width: 22px;
         height: 3px;
+
         background: $text-color;
-        display: block;
 
         & + span {
           margin-top: 4px;

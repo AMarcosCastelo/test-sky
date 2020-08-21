@@ -2,17 +2,25 @@
   cursor: pointer;
   span {
     display: block;
-    position: relative;
+
     font-size: 1rem;
     font-weight: 500;
 
+    position: relative;
+
     &:before {
-      content: attr(data-icon);
       font-family: 'SKY-Icon';
       font-size: 1.4rem;
+      font-weight: normal;
+
       margin-right: 6px;
       vertical-align: -2px;
-      font-weight: normal;
+
+      content: attr(data-icon);
+    }
+
+    &:hover {
+      color: $main-color;
     }
   }
 }

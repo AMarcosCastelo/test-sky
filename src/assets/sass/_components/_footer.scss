@@ -1,6 +1,6 @@
 footer {
   border-top: 1px solid $border-footer;
-  background: $bg-footer;
+  background: $background-footer;
 
   .footer-header {
     border-bottom: 1px solid $border-footer;
@@ -14,13 +14,14 @@ footer {
       .footer-logo {
         height: 40px;
         width: 90px;
+
         background: url($images-path + '/logo-sky-gray.svg') no-repeat left;
       }
 
       .footer-social-media {
         ul {
-          list-style: none;
           display: flex;
+          list-style: none;
 
           li {
             margin: 0 11px;
@@ -31,9 +32,9 @@ footer {
               color: inherit;
 
               &::before {
-                content: attr(data-icon);
                 font-family: 'SKY-Icon';
                 font-size: 1.8rem;
+                content: attr(data-icon);
               }
             }
           }
@@ -54,9 +55,10 @@ footer {
       }
 
       .container-app {
+        max-width: 40%;
+
         padding-left: 60px;
         margin-bottom: 30px;
-        max-width: 40%;
         margin-right: 20px;
 
         .btns-app-stores {
@@ -66,19 +68,22 @@ footer {
 
         a.text-app {
           position: relative;
+
           text-decoration: none;
-          color: inherit;
           font-size: 1.14rem;
           font-weight: 600;
+          color: inherit;
 
           &:before {
-            content: '';
             position: absolute;
+
             width: 50px;
             height: 50px;
+
             background: url($images-path + '/app-icon.png') no-repeat center;
             right: 100%;
             margin-right: 15px;
+            content: '';
           }
         }
 
@@ -86,6 +91,7 @@ footer {
           display: none;
           width: 170px;
           height: 55px;
+
           margin-top: 20px;
           text-decoration: none;
 
