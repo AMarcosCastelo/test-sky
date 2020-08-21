@@ -105,8 +105,8 @@ window.home = {
         {
           breakpoint: 768,
           settings: {
-            arrows: false,
             dots: false,
+            arrows: false,
             centerMode: false,
             centerPadding: 0
           }
@@ -118,9 +118,9 @@ window.home = {
   initMoviesCarousels() {
     $('.movies-carousel').slick({
       initialSlide: 0,
-      infinite: false,
       slidesToShow: 7,
       slidesToScroll: 7,
+      infinite: false,
       responsive: [
         {
           breakpoint: 992,
@@ -132,8 +132,8 @@ window.home = {
         {
           breakpoint: 768,
           settings: {
-            arrows: false,
             centerMode: false,
+            arrows: false,
             slidesToShow: 4,
             slidesToScroll: 1
           }
@@ -141,8 +141,8 @@ window.home = {
         {
           breakpoint: 599,
           settings: {
-            arrows: false,
             centerMode: false,
+            arrows: false,
             slidesToShow: 2,
             slidesToScroll: 1
           }

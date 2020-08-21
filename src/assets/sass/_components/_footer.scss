@@ -4,16 +4,16 @@ footer {
 
   .footer-header {
     border-bottom: 1px solid $border-footer;
-    padding: 12px 0;
+    padding: 13px 0;
 
     .wrapper-footer {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
 
       .footer-logo {
-        width: 90px;
         height: 40px;
+        width: 90px;
         background: url($images-path + '/logo-sky-gray.svg') no-repeat left;
       }
 
@@ -23,12 +23,12 @@ footer {
           display: flex;
 
           li {
-            margin: 0 10px;
+            margin: 0 11px;
 
             a {
               display: block;
-              color: inherit;
               text-decoration: none;
+              color: inherit;
 
               &::before {
                 content: attr(data-icon);
@@ -56,9 +56,12 @@ footer {
       .container-app {
         padding-left: 60px;
         margin-bottom: 30px;
+        max-width: 40%;
+        margin-right: 20px;
 
         .btns-app-stores {
           display: flex;
+          flex-direction: column;
         }
 
         a.text-app {
@@ -229,13 +232,17 @@ footer {
 
       .wrapper-footer-middle {
         & > div {
-          flex-basis: 50%;
+          flex-basis: 47%;
         }
 
         .container-app {
           a.btn-link-app.btn-app-store,
           a.btn-link-app.btn-google-play {
             display: block;
+          }
+
+          .btns-app-stores {
+            flex-direction: row;
           }
         }
 
@@ -247,9 +254,9 @@ footer {
           flex-wrap: wrap;
 
           .nav {
-            -webkit-box-flex: 50%;
-            -ms-flex: 50%;
-            flex: 50%;
+            -webkit-box-flex: 47%;
+            -ms-flex: 47%;
+            flex: 47%;
 
             & + .nav {
               border: none;
