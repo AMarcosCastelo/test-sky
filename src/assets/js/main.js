@@ -20,30 +20,13 @@ window.home = {
   },
 
   initDOMEvents() {
-    this.toggleNavActive('.nav-item');
+    this.eventToggleNavActive('.nav-item');
     this.eventSetThemeMode();
     this.eventIncreaseAndDecreaseFontSize();
   },
 
   setTheme(newTheme) {
     this.accessibilities.theme = newTheme;
-  },
-
-  setFontSize(newFontSize) {
-    this.accessibilities.fontSize = newFontSize;
-    console.log(this.accessibilities.fontSize);
-  },
-
-  eventIncreaseAndDecreaseFontSize() {
-    $('#increaseFont').on('click', () => {
-      this.increaseFontSize();
-      window.__setPreferredFontSize(this.accessibilities.fontSize);
-    });
-
-    $('#decreaseFont').on('click', () => {
-      this.decreaseFontSize();
-      window.__setPreferredFontSize(this.accessibilities.fontSize);
-    });
   },
 
   eventSetThemeMode() {
@@ -53,42 +36,8 @@ window.home = {
     });
   },
 
-  toggleNavActive(elementSelector) {
-    $(elementSelector).click(function () {
-      const elements = document.querySelectorAll(elementSelector);
-      elements.forEach((element) => {
-        if ($(element).hasClass('active')) {
-          element.classList.remove('active');
-        }
-      });
-      $(this).addClass('active');
-    });
-  },
-
-  getMovies() {
-    $.ajax({
-      url: 'https://sky-frontend.herokuapp.com/movies',
-      type: 'GET',
-      success: (data) => {
-        this.setState(data);
-      },
-      error: (error) => {
-        console.log(error.statusText, error.status);
-      }
-    });
-  },
-
-  setState(data) {
-    this.carousels.highlightMovies = data.filter(
-      (item) => item.type === 'highlights'
-    );
-    this.carousels.carouselsMovies = data.filter(
-      (item) => item.type === 'carousel-portrait'
-    );
-    this.makeHighlightsSlider();
-    this.makeMoviesCarousels('#wrapperCarousel1');
-    this.makeMoviesCarousels('#wrapperCarousel2');
-    this.makeMoviesCarousels('#wrapperCarousel3');
+  setFontSize(newFontSize) {
+    this.accessibilities.fontSize = newFontSize;
   },
 
   increaseFontSize() {
@@ -110,6 +59,61 @@ window.home = {
       newFontSize -= 1;
       this.setFontSize(newFontSize);
     }
+  },
+
+  eventIncreaseAndDecreaseFontSize() {
+    $('#increaseFont').on('click', () => {
+      this.increaseFontSize();
+      window.__setPreferredFontSize(this.accessibilities.fontSize);
+    });
+
+    $('#decreaseFont').on('click', () => {
+      this.decreaseFontSize();
+      window.__setPreferredFontSize(this.accessibilities.fontSize);
+    });
+  },
+
+  eventToggleNavActive(elementSelector) {
+    $(elementSelector).click(function () {
+      const elements = document.querySelectorAll(elementSelector);
+      elements.forEach((element) => {
+        if ($(element).hasClass('active')) {
+          element.classList.remove('active');
+        }
+      });
+      $(this).addClass('active');
+    });
+  },
+
+  getMovies() {
+    $.ajax({
+      url: 'https://sky-frontend.herokuapp.com/movies',
+      type: 'GET',
+      success: (data) => {
+        this.setStateMoviesAndInitSliders(data);
+      },
+      error: (error) => {
+        console.log(error.statusText, error.status);
+      }
+    });
+  },
+
+  setStateMoviesAndInitSliders(data) {
+    this.carousels.highlightMovies = data.filter(
+      (item) => item.type === 'highlights'
+    );
+    this.carousels.carouselsMovies = data.filter(
+      (item) => item.type === 'carousel-portrait'
+    );
+
+    this.initSliders();
+  },
+
+  initSliders() {
+    this.makeHighlightsSlider();
+    this.makeMoviesCarousels('#wrapperCarousel1');
+    this.makeMoviesCarousels('#wrapperCarousel2');
+    this.makeMoviesCarousels('#wrapperCarousel3');
   },
 
   makeHighlightsSlider() {
