@@ -5,6 +5,8 @@ const { src, dest, watch, series, parallel } = require('gulp');
 const sass = require('gulp-sass');
 const replace = require('gulp-replace');
 const uglify = require('gulp-uglify-es').default;
+const browserSync = require('browser-sync');
+const server = browserSync.create();
 
 const files = {
   sassPath: 'src/assets/sass/**/*.scss',
@@ -21,6 +23,21 @@ function buildJSTask() {
   return src(files.jsPath).pipe(uglify()).pipe(dest('dist/js'));
 }
 
+function reload(done) {
+  server.reload();
+  done();
+}
+
+function browserSyncServe(done) {
+  server.init({
+    server: {
+      baseDir: '.',
+      index: '/index.html'
+    }
+  });
+  done();
+}
+
 const cbString = new Date().getTime();
 
 function cacheBustTask() {
@@ -30,13 +47,16 @@ function cacheBustTask() {
 }
 
 function watchTask() {
-  watch([files.sassPath, files.jsPath], parallel(buildSassTask, buildJSTask));
+  watch(
+    [files.sassPath, files.jsPath],
+    series(buildSassTask, buildJSTask, reload)
+  );
 }
 
 exports.default = series(parallel(buildSassTask, buildJSTask), cacheBustTask);
 
 exports.watch = series(
-  parallel(buildSassTask, buildJSTask),
+  parallel(browserSyncServe, buildSassTask, buildJSTask),
   cacheBustTask,
   watchTask
 );
