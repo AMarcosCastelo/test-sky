@@ -173,7 +173,6 @@ table {
 }
 
 // Theme
-
 body.dark {
   color: $dark-text-color;
   background-color: $dark-background-color;
@@ -195,20 +194,29 @@ body.dark {
 
     border-top: 1px solid rgba(238, 238, 238, 0.15);
 
-    .footer-top {
+    .footer-header {
       border-bottom: 1px solid rgba(238, 238, 238, 0.15);
 
-      .box-footerTop .logo-footer {
-        // background: url($logo-footer-dark) no-repeat left;
+      .wrapper-footer {
+        .footer-logo {
+          background: url($images-path + '/logo-sky-white.svg') no-repeat left;
+        }
       }
     }
 
-    .footer-middle .box-footerBottom .box-app a.link-app {
-      &.app-store {
-        // background-image: url($img-appStore-dark);
+    .footer-middle .wrapper-footer-middle .container-app a.btn-link-app {
+      &.btn-app-store {
+        background-image: url($images-path + '/button-apple-store-dark.svg');
+
+        &:hover {
+          background-image: url($images-path + '/button-apple-store-over.svg');
+        }
       }
-      &.google-play {
-        // background-image: url($img-googleplay-dark);
+      &.btn-google-play {
+        background-image: url($images-path + '/button-google-play-dark.svg');
+        &:hover {
+          background-image: url($images-path + '/button-google-play-over.svg');
+        }
       }
     }
 

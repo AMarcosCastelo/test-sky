@@ -59,7 +59,9 @@ window.home = {
       (item) => item.type === 'carousel-portrait'
     );
     this.makeHighlightsSlider();
-    this.makeMoviesCarousels();
+    this.makeMoviesCarousels('#wrapperCarousel1');
+    this.makeMoviesCarousels('#wrapperCarousel2');
+    this.makeMoviesCarousels('#wrapperCarousel3');
   },
 
   makeHighlightsSlider() {
@@ -80,13 +82,14 @@ window.home = {
     this.initHighlightsSlider();
   },
 
-  makeMoviesCarousels() {
+  makeMoviesCarousels(id) {
     const html = this.carouselsMovies.map((carousel) => {
       return `
         <div class="movies-list-carousel">
           <h2 class="movies-header-title">${carousel.title}</h2>
-          <div class="movies-carousel" id="moviesCarousel">
+          <div class="movies-carousel" data-slide=${id.replace('#', '')}>
             ${carousel.movies
+              .reverse()
               .map((movie) => {
                 return `
               <div class="item ${movie.isBlocked ? 'blocked' : ''}">
@@ -103,8 +106,8 @@ window.home = {
         </div> `;
     });
 
-    $('#wrapperCarousel').html(html);
-    this.initMoviesCarousels();
+    $(id).html(html);
+    this.initMoviesCarousels(id);
   },
 
   initHighlightsSlider() {
@@ -128,8 +131,8 @@ window.home = {
     });
   },
 
-  initMoviesCarousels() {
-    $('#moviesCarousel').slick({
+  initMoviesCarousels(id) {
+    $(`[data-slide="${id.replace('#', '')}"]`).slick({
       initialSlide: 0,
       slidesToShow: 7,
       slidesToScroll: 7,
