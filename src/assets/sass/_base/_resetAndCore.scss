@@ -3,13 +3,14 @@
 
 @font-face {
   font-family: 'SKY-Icon';
+  font-weight: normal;
+  font-style: normal;
+
   src: url($fonts-path + '/SKY-Icon-Font.eot');
   src: url($fonts-path + '/SKY-Icon-Font.eot?#iefix')
       format('embedded-opentype'),
     url($fonts-path + '/SKY-Icon-Font.woff') format('woff'),
     url($fonts-path + '/SKY-Icon-Font.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
 }
 
 $base-font: 'Roboto', sans-serif;
@@ -225,6 +226,16 @@ body.dark {
 
       a {
         color: #fff !important;
+      }
+
+      ul {
+        li {
+          a {
+            &:hover {
+              color: $main-color !important;
+            }
+          }
+        }
       }
     }
   }

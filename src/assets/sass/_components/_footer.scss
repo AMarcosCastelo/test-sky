@@ -280,6 +280,11 @@ footer {
 
             .nav-content {
               max-height: 100vh;
+              .nav-item {
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
             }
           }
         }
