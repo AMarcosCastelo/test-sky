@@ -11,9 +11,9 @@
 
 <br>
 
-<!-- <p align="center">
+<p align="center">
   <img alt="Frontend" src=".github/bookkFinder2.png" width="100%">
-</p> -->
+</p>
 
 ## Technologies used
 
@@ -37,6 +37,7 @@ This project was developed for the SKY Front End Developer test.
 - Clone this repository: `$ git clone https://github.com/AMarcosCastelo/test-sky.git`
 - Access the folder: `$ cd test-sky`;
 - Install dependecies: `$ yarn` or `$ npm install`;
+- Open on `localhost:3000` and start development: `$ yarn dev:watch` or `$ npm run dev:watch`
 
 ## :memo: License
 
