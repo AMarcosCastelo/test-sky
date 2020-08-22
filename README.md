@@ -1,5 +1,5 @@
 <h1 align="center">
-  SKY Homepage Test: <a href="#">Live a demo</a>
+  SKY Homepage Test: <a href="https://amarcoscastelo.github.io/test-sky/" target="_blank">Live a demo</a>
 </h1>
 
 <p align="center">
