@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:watch": "gulp watch",
-    "deploy:dev": "gulp",
-    "deploy": "gh-pages -d build",
+    "build": "gulp build",
+    "deploy": "yarn build && gh-pages -d dist",
     "lint": "eslint src/assets/js"
   },
   "repository": {
@@ -20,7 +20,9 @@
     "JavaScript",
     "SASS",
     "Gulp",
-    "JQuery"
+    "JQuery",
+    "ESLint",
+    "Prettier"
   ],
   "author": "Antonio Marcos Castelo <marcos-12marcos@hotmail.com> (https://github.com/AMarcosCastelo)",
   "license": "MIT",

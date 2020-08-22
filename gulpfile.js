@@ -10,8 +10,26 @@ const server = browserSync.create();
 
 const files = {
   sassPath: 'src/assets/sass/**/*.scss',
-  jsPath: 'src/assets/js/**/*.js'
+  jsPath: 'src/assets/js/**/*.js',
+  fontsPath: 'src/assets/fonts/*',
+  libsPath: 'src/assets/libs/**/*.*',
+  imagesPath: 'src/assets/images/*.*'
 };
+
+function reload(done) {
+  server.reload();
+  done();
+}
+
+function browserSyncServe(done) {
+  server.init({
+    server: {
+      baseDir: '.',
+      index: 'index.html'
+    }
+  });
+  done();
+}
 
 function buildSassTask() {
   return src(files.sassPath)
@@ -23,27 +41,29 @@ function buildJSTask() {
   return src(files.jsPath).pipe(uglify()).pipe(dest('dist/js'));
 }
 
-function reload(done) {
-  server.reload();
-  done();
+function buildFontsTask() {
+  return src(files.fontsPath).pipe(dest('dist/fonts'));
 }
 
-function browserSyncServe(done) {
-  server.init({
-    server: {
-      baseDir: '.',
-      index: '/index.html'
-    }
-  });
-  done();
+function buildImagesTask() {
+  return src(files.imagesPath).pipe(dest('dist/images'));
 }
 
-const cbString = new Date().getTime();
+function buildLibsTask() {
+  return src(files.libsPath).pipe(dest('dist/libs'));
+}
 
-function cacheBustTask() {
-  return src('index.html')
-    .pipe(replace(/v=\d+/g, 'v=' + cbString))
-    .pipe(dest('.'));
+function replacePathsHtmlToBuild() {
+  return src('./index.html')
+    .pipe(replace('./src/assets/', './'))
+    .pipe(replace('./dist/', './'))
+    .pipe(dest('./dist'));
+}
+
+function replacePathsCSSToBuild() {
+  return src('./dist/css/style.css')
+    .pipe(replace('../../src/assets/', '../'))
+    .pipe(dest('./dist/css'));
 }
 
 function watchTask() {
@@ -53,10 +73,21 @@ function watchTask() {
   );
 }
 
-exports.default = series(parallel(buildSassTask, buildJSTask), cacheBustTask);
+exports.build = series(
+  parallel(
+    buildSassTask,
+    buildJSTask,
+    buildFontsTask,
+    buildImagesTask,
+    buildLibsTask
+  ),
+  replacePathsHtmlToBuild,
+  replacePathsCSSToBuild
+);
+
+exports.default = series(parallel(buildSassTask, buildJSTask));
 
 exports.watch = series(
   parallel(browserSyncServe, buildSassTask, buildJSTask),
-  cacheBustTask,
   watchTask
 );
