@@ -174,7 +174,12 @@ table {
 }
 
 // Theme
+body.light {
+  transition: all 0.5s;
+}
+
 body.dark {
+  transition: all 0.5s;
   color: $dark-text-color;
   background-color: $dark-background-color;
 

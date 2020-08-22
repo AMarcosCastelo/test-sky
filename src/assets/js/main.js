@@ -1,9 +1,16 @@
 window.home = {
-  highlightMovies: [],
-  carouselsMovies: [],
-  theme: '',
-  init({ theme }) {
+  carousels: {
+    highlightMovies: [],
+    carouselsMovies: []
+  },
+  accessibilities: {
+    fontSize: 14,
+    theme: ''
+  },
+
+  init({ theme, fontSize }) {
     this.setTheme(theme);
+    this.setFontSize(fontSize);
     this.initialState();
   },
 
@@ -15,16 +22,34 @@ window.home = {
   initDOMEvents() {
     this.toggleNavActive('.nav-item');
     this.eventSetThemeMode();
+    this.eventIncreaseAndDecreaseFontSize();
   },
 
-  setTheme(theme) {
-    this.theme = theme;
+  setTheme(newTheme) {
+    this.accessibilities.theme = newTheme;
+  },
+
+  setFontSize(newFontSize) {
+    this.accessibilities.fontSize = newFontSize;
+    console.log(this.accessibilities.fontSize);
+  },
+
+  eventIncreaseAndDecreaseFontSize() {
+    $('#increaseFont').on('click', () => {
+      this.increaseFontSize();
+      window.__setPreferredFontSize(this.accessibilities.fontSize);
+    });
+
+    $('#decreaseFont').on('click', () => {
+      this.decreaseFontSize();
+      window.__setPreferredFontSize(this.accessibilities.fontSize);
+    });
   },
 
   eventSetThemeMode() {
     $('#btnSetTheme').click(() => {
-      this.setTheme(this.theme === 'light' ? 'dark' : 'light');
-      window.__setPreferredTheme(this.theme);
+      this.setTheme(this.accessibilities.theme === 'light' ? 'dark' : 'light');
+      window.__setPreferredTheme(this.accessibilities.theme);
     });
   },
 
@@ -54,8 +79,10 @@ window.home = {
   },
 
   setState(data) {
-    this.highlightMovies = data.filter((item) => item.type === 'highlights');
-    this.carouselsMovies = data.filter(
+    this.carousels.highlightMovies = data.filter(
+      (item) => item.type === 'highlights'
+    );
+    this.carousels.carouselsMovies = data.filter(
       (item) => item.type === 'carousel-portrait'
     );
     this.makeHighlightsSlider();
@@ -64,8 +91,29 @@ window.home = {
     this.makeMoviesCarousels('#wrapperCarousel3');
   },
 
+  increaseFontSize() {
+    const isValide = this.accessibilities.fontSize < 18;
+
+    if (isValide) {
+      let newFontSize = this.accessibilities.fontSize;
+      newFontSize += 1;
+      this.setFontSize(newFontSize);
+    }
+  },
+
+  decreaseFontSize() {
+    const isValid =
+      this.accessibilities.fontSize > 10 && this.accessibilities.fontSize <= 18;
+
+    if (isValid) {
+      let newFontSize = this.accessibilities.fontSize;
+      newFontSize -= 1;
+      this.setFontSize(newFontSize);
+    }
+  },
+
   makeHighlightsSlider() {
-    const html = this.highlightMovies[0].items
+    const html = this.carousels.highlightMovies[0].items
       .map((item) => {
         return `
         <div class="item">
@@ -83,7 +131,7 @@ window.home = {
   },
 
   makeMoviesCarousels(id) {
-    const html = this.carouselsMovies.map((carousel) => {
+    const html = this.carousels.carouselsMovies.map((carousel) => {
       return `
         <div class="movies-list-carousel">
           <h2 class="movies-header-title">${carousel.title}</h2>

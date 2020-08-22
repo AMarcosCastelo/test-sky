@@ -40,12 +40,14 @@
           <button
             type="button"
             class="decrease-font"
+            id="decreaseFont"
             title="Diminuir o tamanho das letras"
             data-icon="&#xe91d;"
           ></button>
           <button
             type="button"
             class="increase-font"
+            id="increaseFont"
             title="Aumentar o tamanho das letras"
             data-icon="&#xe91e;"
           ></button>
@@ -362,8 +364,29 @@
         setTheme(preferredTheme || 'dark');
       })();
 
+      (function () {
+        window.__onFontSizeChange = function () {};
+        function setFontSize(newFontSize) {
+          window.__fontSize = newFontSize;
+          preferredFontSize = newFontSize;
+          $('html').attr('style', `font-size: ${newFontSize}px`);
+          window.__onFontSizeChange(newFontSize);
+        }
+        var preferredFontSize;
+        try {
+          preferredFontSize = Number(localStorage.getItem('fontSize'));
+        } catch (err) {}
+        window.__setPreferredFontSize = function (newFontSize) {
+          setFontSize(newFontSize);
+          try {
+            localStorage.setItem('fontSize', newFontSize);
+          } catch (err) {}
+        };
+        setFontSize(preferredFontSize || 14);
+      })();
+
       $(function () {
-        home.init({ theme: window.__theme });
+        home.init({ theme: window.__theme, fontSize: window.__fontSize });
       });
     </script>
   </body>

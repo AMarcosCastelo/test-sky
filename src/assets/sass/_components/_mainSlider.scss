@@ -57,7 +57,7 @@
       height: 50px;
 
       line-height: 50px;
-      background: rgba(#000, 0.7);
+      background: rgba(0, 0, 0, 0.7);
       color: transparent;
       padding: 0;
       outline: none;
@@ -73,6 +73,10 @@
         font-size: 25px;
 
         color: #fff;
+      }
+
+      &:hover {
+        background: rgba(0, 0, 0, 1);
       }
     }
 
