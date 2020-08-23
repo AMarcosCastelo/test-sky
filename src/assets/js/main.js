@@ -1,79 +1,80 @@
-window.home = {
-  carousels: {
+/* eslint-disable no-unused-vars */
+window.createHome = () => {
+  const carousels = {
     highlightMovies: [],
     carouselsMovies: []
-  },
-  accessibilities: {
+  };
+  const accessibilities = {
     fontSize: 14,
     theme: ''
-  },
+  };
 
-  init({ theme, fontSize }) {
-    this.setTheme(theme);
-    this.setFontSize(fontSize);
-    this.initialState();
-  },
+  const init = ({ theme, fontSize }) => {
+    setTheme(theme);
+    setFontSize(fontSize);
+    initialState();
+  };
 
-  initialState() {
-    this.initDOMEvents();
-    this.getMovies();
-  },
+  const initialState = () => {
+    initDOMEvents();
+    getMovies();
+  };
 
-  initDOMEvents() {
-    this.eventToggleNavActive('.nav-item');
-    this.eventSetThemeMode();
-    this.eventIncreaseAndDecreaseFontSize();
-  },
+  const initDOMEvents = () => {
+    eventToggleNavActive('.nav-item');
+    eventSetThemeMode();
+    eventIncreaseAndDecreaseFontSize();
+  };
 
-  setTheme(newTheme) {
-    this.accessibilities.theme = newTheme;
-  },
+  const setTheme = (newTheme) => {
+    accessibilities.theme = newTheme;
+  };
 
-  eventSetThemeMode() {
+  const eventSetThemeMode = () => {
     $('#btnSetTheme').click(() => {
-      this.setTheme(this.accessibilities.theme === 'light' ? 'dark' : 'light');
-      window.__setPreferredTheme(this.accessibilities.theme);
+      setTheme(accessibilities.theme === 'light' ? 'dark' : 'light');
+      window.__setPreferredTheme(accessibilities.theme);
     });
-  },
+  };
 
-  setFontSize(newFontSize) {
-    this.accessibilities.fontSize = newFontSize;
-  },
+  const setFontSize = (newFontSize) => {
+    accessibilities.fontSize = newFontSize;
+  };
 
-  increaseFontSize() {
-    const isValide = this.accessibilities.fontSize < 18;
+  const increaseFontSize = () => {
+    const isValide = accessibilities.fontSize < 18;
 
     if (isValide) {
-      let newFontSize = this.accessibilities.fontSize;
+      let newFontSize = accessibilities.fontSize;
       newFontSize += 1;
-      this.setFontSize(newFontSize);
+      setFontSize(newFontSize);
     }
-  },
+  };
 
-  decreaseFontSize() {
+  const decreaseFontSize = () => {
     const isValid =
-      this.accessibilities.fontSize > 10 && this.accessibilities.fontSize <= 18;
+      accessibilities.fontSize > 10 && accessibilities.fontSize <= 18;
 
     if (isValid) {
-      let newFontSize = this.accessibilities.fontSize;
+      let newFontSize = accessibilities.fontSize;
       newFontSize -= 1;
-      this.setFontSize(newFontSize);
+      setFontSize(newFontSize);
     }
-  },
+  };
 
-  eventIncreaseAndDecreaseFontSize() {
+  const eventIncreaseAndDecreaseFontSize = () => {
     $('#increaseFont').on('click', () => {
-      this.increaseFontSize();
-      window.__setPreferredFontSize(this.accessibilities.fontSize);
+      increaseFontSize();
+      window.__setPreferredFontSize(accessibilities.fontSize);
     });
 
     $('#decreaseFont').on('click', () => {
-      this.decreaseFontSize();
-      window.__setPreferredFontSize(this.accessibilities.fontSize);
+      decreaseFontSize();
+      window.__setPreferredFontSize(accessibilities.fontSize);
     });
-  },
+  };
 
-  eventToggleNavActive(elementSelector) {
+  const eventToggleNavActive = (elementSelector) => {
     $(elementSelector).click(function () {
       const elements = document.querySelectorAll(elementSelector);
       elements.forEach((element) => {
@@ -83,41 +84,41 @@ window.home = {
       });
       $(this).addClass('active');
     });
-  },
+  };
 
-  getMovies() {
+  const getMovies = () => {
     $.ajax({
       url: 'https://sky-frontend.herokuapp.com/movies',
       type: 'GET',
       success: (data) => {
-        this.setStateMoviesAndInitSliders(data);
+        setStateMoviesAndInitSliders(data);
       },
       error: (error) => {
         console.log(error.statusText, error.status);
       }
     });
-  },
+  };
 
-  setStateMoviesAndInitSliders(data) {
-    this.carousels.highlightMovies = data.filter(
+  const setStateMoviesAndInitSliders = (data) => {
+    carousels.highlightMovies = data.filter(
       (item) => item.type === 'highlights'
     );
-    this.carousels.carouselsMovies = data.filter(
+    carousels.carouselsMovies = data.filter(
       (item) => item.type === 'carousel-portrait'
     );
 
-    this.initSliders();
-  },
+    initSliders();
+  };
 
-  initSliders() {
-    this.makeHighlightsSlider();
-    this.makeMoviesCarousels('#wrapperCarousel1');
-    this.makeMoviesCarousels('#wrapperCarousel2');
-    this.makeMoviesCarousels('#wrapperCarousel3');
-  },
+  const initSliders = () => {
+    makeHighlightsSlider();
+    makeMoviesCarousels('#wrapperCarousel1');
+    makeMoviesCarousels('#wrapperCarousel2');
+    makeMoviesCarousels('#wrapperCarousel3');
+  };
 
-  makeHighlightsSlider() {
-    const html = this.carousels.highlightMovies[0].items
+  const makeHighlightsSlider = () => {
+    const html = carousels.highlightMovies[0].items
       .map((item) => {
         return `
         <div class="item">
@@ -131,11 +132,11 @@ window.home = {
       .join('');
 
     $('#sliderHighlights').html(html).removeClass('on-loading');
-    this.initHighlightsSlider();
-  },
+    initHighlightsSlider();
+  };
 
-  makeMoviesCarousels(id) {
-    const html = this.carousels.carouselsMovies.map((carousel) => {
+  const makeMoviesCarousels = (id) => {
+    const html = carousels.carouselsMovies.map((carousel) => {
       return `
         <div class="movies-list-carousel">
           <h2 class="movies-header-title">${carousel.title}</h2>
@@ -159,10 +160,10 @@ window.home = {
     });
 
     $(id).html(html);
-    this.initMoviesCarousels(id);
-  },
+    initMoviesCarousels(id);
+  };
 
-  initHighlightsSlider() {
+  const initHighlightsSlider = () => {
     $('#sliderHighlights').slick({
       centerMode: true,
       centerPadding: '25%',
@@ -181,9 +182,9 @@ window.home = {
         }
       ]
     });
-  },
+  };
 
-  initMoviesCarousels(id) {
+  const initMoviesCarousels = (id) => {
     $(`[data-slide="${id.replace('#', '')}"]`).slick({
       initialSlide: 0,
       slidesToShow: 7,
@@ -217,5 +218,7 @@ window.home = {
         }
       ]
     });
-  }
+  };
+
+  return { init };
 };
