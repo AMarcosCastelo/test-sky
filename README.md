@@ -12,7 +12,7 @@
 <br>
 
 <p align="center">
-  <img alt="Frontend" src=".github/bookkFinder2.png" width="100%">
+  <img alt="Frontend" src=".github/sky-test.png" width="100%">
 </p>
 
 ## Technologies used
