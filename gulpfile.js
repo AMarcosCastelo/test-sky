@@ -5,6 +5,8 @@ const { src, dest, watch, series, parallel } = require('gulp');
 const sass = require('gulp-sass');
 const replace = require('gulp-replace');
 const uglify = require('gulp-uglify-es').default;
+const babel = require('gulp-babel');
+const plumber = require('gulp-plumber');
 const browserSync = require('browser-sync');
 const server = browserSync.create();
 
@@ -38,7 +40,22 @@ function buildSassTask() {
 }
 
 function buildJSTask() {
-  return src(files.jsPath).pipe(uglify()).pipe(dest('dist/js'));
+  return src(files.jsPath)
+    .pipe(plumber())
+    .pipe(
+      babel({
+        presets: [
+          [
+            '@babel/env',
+            {
+              modules: false
+            }
+          ]
+        ]
+      })
+    )
+    .pipe(uglify())
+    .pipe(dest('dist/js'));
 }
 
 function buildFontsTask() {
