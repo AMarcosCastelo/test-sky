@@ -4,6 +4,7 @@
       margin: 15px;
       padding-top: 35%;
       border-radius: 5px;
+
       @include loading-shimmer();
 
       @media (min-width: 992px) {
